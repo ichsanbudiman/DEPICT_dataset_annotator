@@ -1,0 +1,29 @@
+services:
+  desk:
+    build:
+      context: .
+      target: runtime
+    restart: unless-stopped
+    ports:
+      - "${DESK_BIND:-127.0.0.1}:${DESK_PORT:-8080}:8080"
+    environment:
+      PORT: "8080"
+      DB_PATH: /app/data/desk.db
+      SESSION_SECRET: ${SESSION_SECRET:?Set SESSION_SECRET in .env (not change-me)}
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:8080}
+      INSECURE_COOKIES: ${INSECURE_COOKIES:-}
+    volumes:
+      - ./data:/app/data
+      - ./bundles:/bundles:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8080/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
