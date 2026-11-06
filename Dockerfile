@@ -23,15 +23,17 @@ COPY --link --chown=1001:1001 package.json package-lock.json ./
 COPY --link --chown=1001:1001 server ./server
 COPY --link --chown=1001:1001 public ./public
 COPY --link --chown=1001:1001 scripts ./scripts
+COPY entrypoint.sh /usr/local/bin/desk-entrypoint
+RUN chmod 755 /usr/local/bin/desk-entrypoint
 
 ENV NODE_ENV=production \
     PORT=8080 \
     DB_PATH=/app/data/desk.db
 
-USER 1001:1001
+USER root
 EXPOSE 8080
 
 LABEL org.opencontainers.image.title="depict-annotation-desk" \
       org.opencontainers.image.description="Self-hosted DEPICT annotation desk"
 
-ENTRYPOINT ["node", "server/index.js"]
+ENTRYPOINT ["desk-entrypoint"]
