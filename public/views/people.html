@@ -1,0 +1,22 @@
+    <!-- PEOPLE (self-hosted only) -->
+    <section id="view-ppl" hidden>
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-h"><h2>Annotators</h2><span class="status" id="ppl-status">—</span></div>
+          <div class="foot">
+            <input id="ppl-name" placeholder="Their name" aria-label="Name">
+            <label class="toggle"><input type="checkbox" id="ppl-owner"> Owner</label>
+            <button class="btn" id="ppl-add">Create link</button>
+          </div>
+          <div id="ppl-link" hidden></div>
+          <div class="scroll-x"><table id="ppl-tbl"><tbody></tbody></table></div>
+          <div class="panel-foot prose">
+            A link is shown once, here and nowhere else, because only its hash is
+            stored. <b>Rotate</b> issues a new one and kills the old, keeping every
+            annotation: that is what to use when a link leaks. <b>Disable</b> stops
+            sign-in and is reversible. <b>Remove</b> deletes the person and all their
+            annotations, and cannot be undone.
+          </div>
+        </div>
+      </div>
+    </section>
