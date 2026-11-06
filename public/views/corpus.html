@@ -1,0 +1,77 @@
+    <!-- CORPUS -->
+    <section id="view-cor" hidden>
+      <div class="stack">
+        <div class="panel">
+          <div class="panel-h"><h2>Load a bundle</h2><span class="status" id="cor-status">—</span></div>
+          <div class="schema-note" id="schema-note" hidden></div>
+          <div style="padding:16px">
+            <div class="drop" id="drop">
+              <p class="prose" style="margin:0 auto 4px">Drop one project JSON at a time. Each file is merged into the stored corpus. Re-uploading the same project replaces only that project.</p>
+              <label class="file"><input type="file" id="file" accept="application/json,.json"><span>Choose file…</span></label>
+            </div>
+            <div id="cor-result" hidden></div>
+            <div id="cor-stored" class="cor-stored"></div>
+            <div class="prose" style="margin-top:18px">
+              <p style="margin-top:0">Get the JSON from the dataset generator:
+              <a href="https://github.com/ichsanbudiman/DEPICT.git" target="_blank" rel="noopener noreferrer">github.com/ichsanbudiman/DEPICT</a>.</p>
+              <p>One file is one project. <code>project</code>, <code>hops</code> and
+              <code>neighbourhood</code> sit on the bundle, and source sits in <code>snippets</code>
+              (path, line window, text). Each instance needs an <code>id</code>, a <code>root</code> name,
+              and a <code>graph</code>: nodes as <code>{id, kind, file, lines}</code>, edges with
+              <code>src_id</code>, <code>dst_id</code> and a <code>relation_type</code> array, plus
+              <code>root</code> and <code>structural_features</code>. Node labels are derived from the ids.
+              <code>in_model_view: false</code> is a node or edge the pruning rule removed:
+              drawn dashed, and hidden when <b>Pruned graph</b> is checked. <code>proposed</code> is
+              omitted by the server when the instance is <code>blind</code>.</p>
+              <pre style="background:var(--sunk);padding:12px 14px;border-radius:9px;overflow:auto;font-size:12px">{
+  "schema": "depict_annotation_v1",
+  "project": "Vector Draw 1.2",
+  "hops": 1,
+  "neighbourhood": "v2",
+  "snippets": {
+    "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java#window": {
+      "path": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+      "from": 1, "to": 22,
+      "text": "package com.vectordraw.shape;\n…"
+    }
+  },
+  "instances": [
+    {
+      "id": "vdraw-0012",
+      "root": "LegacyShapeAdapter",
+      "gold": { "file_path": "…/LegacyShapeAdapter.java", "project_name": "Vector Draw 1.2" },
+      "proposed": ["Adapter"],
+      "graph": {
+        "root": "C:com.vectordraw.shape.LegacyShapeAdapter",
+        "nodes": [
+          { "id": "C:com.vectordraw.shape.LegacyShapeAdapter", "kind": "type", "root": true,
+            "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+            "lines": [4, 21],
+            "facts": { "kind": "class", "supertypes": ["Figure"] } },
+          { "id": "F:com.vectordraw.shape.LegacyShapeAdapter.cachedName", "kind": "field",
+            "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+            "lines": [8, 8], "in_model_view": false }
+        ],
+        "edges": [
+          { "src_id": "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox",
+            "dst_id": "M:com.vectordraw.shape.NativeShape.bounds",
+            "relation_type": ["calls", "delegates"],
+            "facts": { "via": "shape", "via_kind": "field", "count": 1 } }
+        ],
+        "structural_features": {
+          "C:com.vectordraw.shape.LegacyShapeAdapter": {
+            "is_root": 1.0, "hop_distance": 0.0, "has_bidirectional_call": 0.0
+          }
+        }
+      }
+    }
+  ]
+}</pre>
+              <p>Re-uploading a project replaces only that project. Annotations already recorded are kept and stay matched by
+              <code>id</code>, so re-loading a corrected bundle does not lose work. A file that still carries
+              <code>project</code> or <code>files</code> on each instance loads as before.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
