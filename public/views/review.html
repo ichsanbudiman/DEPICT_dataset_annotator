@@ -1,0 +1,87 @@
+    <!-- REVIEW -->
+    <section id="view-rev" hidden>
+      <div class="stack">
+        <div class="grid" id="rev-tiles"></div>
+        <div class="panel">
+          <div class="panel-h">
+            <div class="hgroup">
+              <h2>Agreement by pattern</h2>
+              <button type="button" class="btn mark" id="kappa-help" aria-label="About these columns" title="About these columns" aria-haspopup="dialog" aria-controls="kappa-help-dlg">?</button>
+            </div>
+            <span class="status" id="kappa-note"></span>
+          </div>
+          <div class="scroll-x"><table id="kappa-tbl"><tbody></tbody></table></div>
+          <div id="kappa-help-dlg" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="kappa-help-h">
+            <div class="help-card">
+              <h2 id="kappa-help-h">Agreement by pattern</h2>
+              <div class="help-body">
+              <p class="lead">For one pattern, over every completed verdict:</p>
+              <dl>
+                <div><dt>S</dt><dd>number of verdicts given</dd></div>
+                <div><dt>U</dt><dd>number of those that were unsure</dd></div>
+                <div><dt>Y</dt><dd>number that were yes</dd></div>
+              </dl>
+              <p class="formula">Yes rate = Y / (S − U)</p>
+              <p class="formula">Unsure = U / S</p>
+              <p class="lead">For a pair of annotators on the same instance, counting only yes and no. An unsure answer is left out of these counts.</p>
+              <dl>
+                <div><dt>n<sub>11</sub></dt><dd>both said yes</dd></div>
+                <div><dt>n<sub>10</sub></dt><dd>first yes, second no</dd></div>
+                <div><dt>n<sub>01</sub></dt><dd>first no, second yes</dd></div>
+                <div><dt>n<sub>00</sub></dt><dd>both said no</dd></div>
+              </dl>
+              <p class="formula">n = n<sub>11</sub> + n<sub>10</sub> + n<sub>01</sub> + n<sub>00</sub></p>
+              <p class="formula">p<sub>o</sub> = (n<sub>11</sub> + n<sub>00</sub>) / n</p>
+              <p class="formula">p<sub>e</sub> = [(n<sub>11</sub> + n<sub>10</sub>)(n<sub>11</sub> + n<sub>01</sub>) + (n<sub>01</sub> + n<sub>00</sub>)(n<sub>10</sub> + n<sub>00</sub>)] / n<sup>2</sup></p>
+              <p class="formula">κ = (p<sub>o</sub> − p<sub>e</sub>) / (1 − p<sub>e</sub>), and κ = 1 when p<sub>e</sub> = 1</p>
+              <!-- Hidden with the PABAK column. Remove hidden when showPabak is turned on in review.js. -->
+              <p class="formula" hidden>PABAK = 2 · p<sub>o</sub> − 1</p>
+              <p class="lead">With more than one annotator pair, each pair is counted this way. The n cell is the sum of those n values. p<sub>o</sub> and κ are the mean of the pair values. κ is amber when PABAK − κ is greater than 0.2.</p>
+              </div>
+              <button type="button" class="btn primary" data-close>Close</button>
+            </div>
+          </div>
+        </div>
+        <!-- Hidden until label set agreement should be shown again. Remove hidden. -->
+        <div class="panel" hidden>
+          <div class="panel-h">
+            <div class="hgroup">
+              <h2>Label set agreement</h2>
+              <button type="button" class="btn mark" id="set-help" aria-label="About these measures" title="About these measures" aria-haspopup="dialog" aria-controls="set-help-dlg">?</button>
+            </div>
+            <span class="status" id="set-note">—</span>
+          </div>
+          <div class="scroll-x"><table id="set-tbl"><tbody></tbody></table></div>
+          <div id="set-help-dlg" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="set-help-h">
+            <div class="help-card">
+              <h2 id="set-help-h">Label set agreement</h2>
+              <div class="help-body">
+              <p class="lead">On one instance, a label set is the patterns an annotator marked yes.</p>
+              <p class="lead">For a pair of annotators on the same instance:</p>
+              <dl>
+                <div><dt>Intersection</dt><dd>patterns both marked yes</dd></div>
+                <div><dt>Union</dt><dd>patterns either marked yes</dd></div>
+              </dl>
+              <p class="formula">Jaccard = intersection / union</p>
+              <p class="formula">Jaccard, mean = the mean of Jaccard over pairs whose union is not empty</p>
+              <p class="formula">Exact set match = (pairs with the same set) / (all pairs). Both sets empty counts as the same set.</p>
+              <p class="lead">Hamming uses every pattern cell where both people answered, including no and unsure.</p>
+              <p class="formula">Hamming agreement = (cells with the same answer) / (cells both answered)</p>
+              <p class="lead">Both sets empty is the number of pairs where neither person marked a pattern yes. Those pairs are in the exact-match count and left out of the Jaccard mean.</p>
+              </div>
+              <button type="button" class="btn primary" data-close>Close</button>
+            </div>
+          </div>
+        </div>
+        <!-- Hidden until proposal anchoring should be shown again. Remove hidden. -->
+        <div class="panel" hidden>
+          <div class="panel-h"><h2>Proposal anchoring</h2><span class="status" id="anchor-note">—</span></div>
+          <div class="scroll-x"><table id="anchor-tbl"><tbody></tbody></table></div>
+          <div class="panel-foot prose" id="anchor-prose"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-h"><h2>Adjudication</h2><span class="status" id="dis-note">—</span></div>
+          <div class="scroll-x"><table id="dis-tbl"><tbody></tbody></table></div>
+        </div>
+      </div>
+    </section>
