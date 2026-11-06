@@ -1,0 +1,22 @@
+{
+  "name": "depict-annotation-desk",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-hosted server for the DEPICT annotation desk",
+  "scripts": {
+    "start": "node server/index.js",
+    "annotator": "node scripts/add-annotator.js",
+    "load": "node scripts/load-bundle.js",
+    "people": "node scripts/annotators.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "11.3.0",
+    "cookie-parser": "1.4.6",
+    "express": "4.21.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
