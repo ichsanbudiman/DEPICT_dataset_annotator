@@ -1,0 +1,424 @@
+{
+ "schema": "depict_annotation_v1",
+ "project": "Vector Draw 1.2",
+ "hops": 1,
+ "neighbourhood": "v2",
+ "snippets": {
+  "Vector Draw 1.2/src/com/vectordraw/shape/Bounds.java#window": {
+   "path": "Vector Draw 1.2/src/com/vectordraw/shape/Bounds.java",
+   "from": 1,
+   "to": 9,
+   "text": "package com.vectordraw.shape;\n\n/** An axis-aligned rectangle. */\npublic class Bounds {\n\n    public Bounds(int x, int y, int w, int h) {\n    }\n}\n"
+  },
+  "Vector Draw 1.2/src/com/vectordraw/shape/Figure.java#window": {
+   "path": "Vector Draw 1.2/src/com/vectordraw/shape/Figure.java",
+   "from": 1,
+   "to": 8,
+   "text": "package com.vectordraw.shape;\n\n/** Anything the editor can draw. */\npublic interface Figure {\n\n    Bounds displayBox();\n}\n"
+  },
+  "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java#window": {
+   "path": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+   "from": 1,
+   "to": 22,
+   "text": "package com.vectordraw.shape;\n\n/** Presents a legacy primitive through the editor's Figure interface. */\npublic class LegacyShapeAdapter implements Figure {\n\n    private final NativeShape shape;\n\n    private String cachedName = \"\";\n\n    public LegacyShapeAdapter(NativeShape shape) {\n        this.shape = shape;\n    }\n\n    public Bounds displayBox() {\n        return shape.bounds();\n    }\n\n    public String getName() {\n        return cachedName;\n    }\n}\n"
+  },
+  "Vector Draw 1.2/src/com/vectordraw/shape/NativeShape.java#window": {
+   "path": "Vector Draw 1.2/src/com/vectordraw/shape/NativeShape.java",
+   "from": 1,
+   "to": 12,
+   "text": "package com.vectordraw.shape;\n\n/** The legacy primitive. Predates Figure and cannot be changed. */\npublic class NativeShape {\n\n    private int x, y, w, h;\n\n    public Bounds bounds() {\n        return new Bounds(x, y, w, h);\n    }\n}\n"
+  }
+ },
+ "instances": [
+  {
+   "id": "vdraw-0012",
+   "root": "LegacyShapeAdapter",
+   "gold": {
+    "file_path": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+    "project_name": "Vector Draw 1.2"
+   },
+   "proposed": [
+    "Adapter"
+   ],
+   "graph": {
+    "root": "C:com.vectordraw.shape.LegacyShapeAdapter",
+    "nodes": [
+     {
+      "id": "C:com.vectordraw.shape.LegacyShapeAdapter",
+      "kind": "type",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+      "lines": [
+       4,
+       21
+      ],
+      "facts": {
+       "kind": "class",
+       "abstract": false,
+       "package": "com.vectordraw.shape",
+       "supertypes": [
+        "Figure"
+       ],
+       "external": false
+      },
+      "root": true
+     },
+     {
+      "id": "F:com.vectordraw.shape.LegacyShapeAdapter.shape",
+      "kind": "field",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+      "lines": [
+       6,
+       6
+      ],
+      "facts": {
+       "datatype": "NativeShape",
+       "is_collection": false,
+       "visibility": "private",
+       "final": true
+      }
+     },
+     {
+      "id": "F:com.vectordraw.shape.LegacyShapeAdapter.cachedName",
+      "kind": "field",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+      "lines": [
+       8,
+       8
+      ],
+      "facts": {
+       "datatype": "String",
+       "is_collection": false,
+       "visibility": "private"
+      },
+      "in_model_view": false
+     },
+     {
+      "id": "CT:com.vectordraw.shape.LegacyShapeAdapter.LegacyShapeAdapter#1",
+      "kind": "method",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+      "lines": [
+       10,
+       12
+      ],
+      "facts": {
+       "signature": "LegacyShapeAdapter(NativeShape shape)",
+       "return_type": "void",
+       "visibility": "public"
+      }
+     },
+     {
+      "id": "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox",
+      "kind": "method",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+      "lines": [
+       14,
+       16
+      ],
+      "facts": {
+       "signature": "displayBox()",
+       "return_type": "Bounds",
+       "visibility": "public"
+      }
+     },
+     {
+      "id": "M:com.vectordraw.shape.LegacyShapeAdapter.getName",
+      "kind": "method",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/LegacyShapeAdapter.java",
+      "lines": [
+       18,
+       20
+      ],
+      "facts": {
+       "signature": "getName()",
+       "return_type": "String",
+       "visibility": "public"
+      },
+      "in_model_view": false
+     },
+     {
+      "id": "I:com.vectordraw.shape.Figure",
+      "kind": "type",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/Figure.java",
+      "lines": [
+       4,
+       7
+      ],
+      "facts": {
+       "kind": "interface",
+       "abstract": false,
+       "package": "com.vectordraw.shape",
+       "supertypes": [],
+       "external": false
+      }
+     },
+     {
+      "id": "M:com.vectordraw.shape.Figure.displayBox",
+      "kind": "method",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/Figure.java",
+      "lines": [
+       6,
+       6
+      ],
+      "facts": {
+       "signature": "displayBox()",
+       "return_type": "Bounds",
+       "visibility": "public",
+       "abstract": true
+      }
+     },
+     {
+      "id": "C:com.vectordraw.shape.NativeShape",
+      "kind": "type",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/NativeShape.java",
+      "lines": [
+       4,
+       11
+      ],
+      "facts": {
+       "kind": "class",
+       "abstract": false,
+       "package": "com.vectordraw.shape",
+       "supertypes": [],
+       "external": false
+      }
+     },
+     {
+      "id": "M:com.vectordraw.shape.NativeShape.bounds",
+      "kind": "method",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/NativeShape.java",
+      "lines": [
+       8,
+       10
+      ],
+      "facts": {
+       "signature": "bounds()",
+       "return_type": "Bounds",
+       "visibility": "public"
+      }
+     },
+     {
+      "id": "C:com.vectordraw.shape.Bounds",
+      "kind": "type",
+      "file": "Vector Draw 1.2/src/com/vectordraw/shape/Bounds.java",
+      "lines": [
+       4,
+       8
+      ],
+      "facts": {
+       "kind": "class",
+       "abstract": false,
+       "package": "com.vectordraw.shape",
+       "supertypes": [],
+       "external": false
+      }
+     }
+    ],
+    "edges": [
+     {
+      "src_id": "C:com.vectordraw.shape.LegacyShapeAdapter",
+      "dst_id": "F:com.vectordraw.shape.LegacyShapeAdapter.shape",
+      "relation_type": [
+       "has_field"
+      ]
+     },
+     {
+      "src_id": "C:com.vectordraw.shape.LegacyShapeAdapter",
+      "dst_id": "F:com.vectordraw.shape.LegacyShapeAdapter.cachedName",
+      "relation_type": [
+       "has_field"
+      ],
+      "in_model_view": false
+     },
+     {
+      "src_id": "C:com.vectordraw.shape.LegacyShapeAdapter",
+      "dst_id": "CT:com.vectordraw.shape.LegacyShapeAdapter.LegacyShapeAdapter#1",
+      "relation_type": [
+       "has_constructor"
+      ]
+     },
+     {
+      "src_id": "C:com.vectordraw.shape.LegacyShapeAdapter",
+      "dst_id": "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox",
+      "relation_type": [
+       "has_method"
+      ]
+     },
+     {
+      "src_id": "C:com.vectordraw.shape.LegacyShapeAdapter",
+      "dst_id": "M:com.vectordraw.shape.LegacyShapeAdapter.getName",
+      "relation_type": [
+       "has_method"
+      ],
+      "in_model_view": false
+     },
+     {
+      "src_id": "C:com.vectordraw.shape.LegacyShapeAdapter",
+      "dst_id": "I:com.vectordraw.shape.Figure",
+      "relation_type": [
+       "implements"
+      ]
+     },
+     {
+      "src_id": "F:com.vectordraw.shape.LegacyShapeAdapter.shape",
+      "dst_id": "C:com.vectordraw.shape.NativeShape",
+      "relation_type": [
+       "has"
+      ]
+     },
+     {
+      "src_id": "CT:com.vectordraw.shape.LegacyShapeAdapter.LegacyShapeAdapter#1",
+      "dst_id": "C:com.vectordraw.shape.NativeShape",
+      "relation_type": [
+       "references"
+      ]
+     },
+     {
+      "src_id": "CT:com.vectordraw.shape.LegacyShapeAdapter.LegacyShapeAdapter#1",
+      "dst_id": "F:com.vectordraw.shape.LegacyShapeAdapter.shape",
+      "relation_type": [
+       "writes_field"
+      ],
+      "facts": {
+       "provenance": "parameter",
+       "count": 1
+      }
+     },
+     {
+      "src_id": "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox",
+      "dst_id": "C:com.vectordraw.shape.Bounds",
+      "relation_type": [
+       "uses"
+      ]
+     },
+     {
+      "src_id": "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox",
+      "dst_id": "F:com.vectordraw.shape.LegacyShapeAdapter.shape",
+      "relation_type": [
+       "reads_field",
+       "delegates_via_field"
+      ],
+      "facts": {
+       "count": 1
+      }
+     },
+     {
+      "src_id": "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox",
+      "dst_id": "M:com.vectordraw.shape.NativeShape.bounds",
+      "relation_type": [
+       "calls",
+       "delegates"
+      ],
+      "facts": {
+       "via": "shape",
+       "via_kind": "field",
+       "count": 1
+      }
+     },
+     {
+      "src_id": "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox",
+      "dst_id": "M:com.vectordraw.shape.Figure.displayBox",
+      "relation_type": [
+       "implements_method"
+      ]
+     },
+     {
+      "src_id": "M:com.vectordraw.shape.LegacyShapeAdapter.getName",
+      "dst_id": "F:com.vectordraw.shape.LegacyShapeAdapter.cachedName",
+      "relation_type": [
+       "reads_field"
+      ],
+      "facts": {
+       "count": 1
+      },
+      "in_model_view": false
+     },
+     {
+      "src_id": "I:com.vectordraw.shape.Figure",
+      "dst_id": "M:com.vectordraw.shape.Figure.displayBox",
+      "relation_type": [
+       "has_method"
+      ]
+     },
+     {
+      "src_id": "M:com.vectordraw.shape.Figure.displayBox",
+      "dst_id": "C:com.vectordraw.shape.Bounds",
+      "relation_type": [
+       "uses"
+      ]
+     },
+     {
+      "src_id": "C:com.vectordraw.shape.NativeShape",
+      "dst_id": "M:com.vectordraw.shape.NativeShape.bounds",
+      "relation_type": [
+       "has_method"
+      ]
+     },
+     {
+      "src_id": "M:com.vectordraw.shape.NativeShape.bounds",
+      "dst_id": "C:com.vectordraw.shape.Bounds",
+      "relation_type": [
+       "uses"
+      ]
+     }
+    ],
+    "structural_features": {
+     "C:com.vectordraw.shape.LegacyShapeAdapter": {
+      "is_root": 1.0,
+      "hop_distance": 0.0,
+      "has_bidirectional_call": 0.0
+     },
+     "F:com.vectordraw.shape.LegacyShapeAdapter.shape": {
+      "is_root": 0.0,
+      "hop_distance": 0.0,
+      "has_bidirectional_call": 0.0
+     },
+     "F:com.vectordraw.shape.LegacyShapeAdapter.cachedName": {
+      "is_root": 0.0,
+      "hop_distance": 0.0,
+      "has_bidirectional_call": 0.0
+     },
+     "CT:com.vectordraw.shape.LegacyShapeAdapter.LegacyShapeAdapter#1": {
+      "is_root": 0.0,
+      "hop_distance": 0.0,
+      "has_bidirectional_call": 0.0
+     },
+     "M:com.vectordraw.shape.LegacyShapeAdapter.displayBox": {
+      "is_root": 0.0,
+      "hop_distance": 0.0,
+      "has_bidirectional_call": 0.0
+     },
+     "M:com.vectordraw.shape.LegacyShapeAdapter.getName": {
+      "is_root": 0.0,
+      "hop_distance": 0.0,
+      "has_bidirectional_call": 0.0
+     },
+     "I:com.vectordraw.shape.Figure": {
+      "is_root": 0.0,
+      "hop_distance": 1.0,
+      "has_bidirectional_call": 0.0
+     },
+     "M:com.vectordraw.shape.Figure.displayBox": {
+      "is_root": 0.0,
+      "hop_distance": 1.0,
+      "has_bidirectional_call": 0.0
+     },
+     "C:com.vectordraw.shape.NativeShape": {
+      "is_root": 0.0,
+      "hop_distance": 1.0,
+      "has_bidirectional_call": 0.0
+     },
+     "M:com.vectordraw.shape.NativeShape.bounds": {
+      "is_root": 0.0,
+      "hop_distance": 1.0,
+      "has_bidirectional_call": 0.0
+     },
+     "C:com.vectordraw.shape.Bounds": {
+      "is_root": 0.0,
+      "hop_distance": 1.0,
+      "has_bidirectional_call": 0.0
+     }
+    }
+   }
+  }
+ ]
+}
